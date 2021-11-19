@@ -3,7 +3,13 @@ const bodyParser = require('body-parser');
 const { randomBytes } = require('crypto');
 
 const app = express();
-app.use(bodyParser.json(0));
+// app.use(bodyParser.json(0));
+
+// app.use(bodyParser.urlencoded());
+// app.use(bodyParser.json());
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 const posts = {};
 
