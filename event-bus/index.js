@@ -22,5 +22,5 @@ app.post('/events', (req, res) => {
 });
 
 app.listen(4005, () => {
-    console.log('istening 4005');
+    console.log('listening 4005');
 });
