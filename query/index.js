@@ -16,19 +16,38 @@ app.post('/events', (req, res) => {
     const { type, data } = req.body;
     console.log('Event received:', req.body.type);
 
-    if (type === 'PostCreated') { 
+    if (type === 'PostCreated') {
         const { id, title } = data;
         posts[id] = { id, title, comments: [] };
     }
 
-    if (type === 'CommentCreated') { 
-        const { id, content, postId } = data;
+    if (type === 'CommentCreated') {
+        const { id, content, postId, status } = data;
+        
         console.log(`id => ${id}, content=> ${content}, postId=>${postId}`);
+
         const post = posts[postId];
-        console.log(`post => ${JSON.stringify( post, null, ' ')}`);
-        post.comments.push({ id, content });
+        post.comments.push({ id, content, status });
+        console.log(`post => ${JSON.stringify(post, null, ' ')}`);
     }
+
+    if (type === 'CommentUpdated') {
+        const { id, content, postId, status } = data;
+        
+        console.log(`id => ${id}, content=> ${content}, postId=>${postId}, status=>${status}`);
+        
+        const post = posts[postId];
+        const comment = post.comments.find(comment => {
+            return comment.id === id;
+        });
+
+        comment.status = status;
+        comment.content = content;
+        console.log(`post => ${JSON.stringify(post, null, ' ')}`);
+    }
+
     
+
     res.send({});
 });
 
