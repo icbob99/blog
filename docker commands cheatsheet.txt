@@ -1,7 +1,10 @@
+Docker commands:
 - create image from Docker file
 docker build .    
 - build and tag image from docker file
 docker build -t boris/posts .
+- build with tag and version
+docker build -t boris/posts:0.0.1 .
 - boris/posts is a tag
 - '.' you must to use it. It sais that dockerfile is in current directory
 - run image with image id/tag
@@ -13,10 +16,35 @@ docker images
 - Create and start continaer, but also override the default command
 docker run -it [image id or image tag] [cmd]
 - Print out information about all the running containers
-docker posts
+docker container ls
 - Execute given command in a running container
 docker exec -it [container id] [cmd]
 - Print out logs from the given container
 docker logs [container id]
 - All currently running containers
 docker ps
+
+Kubernetis:
+- get version
+kubectl version
+- run pod
+kubectl apply -f posts.yaml
+- inspect pods
+kubectl get pods
+
+docker world vs Kubernetis world
+docker ps                               <-> kubectl get pods
+docker exec -it [container id] [cmd]    <-> kubectl exec -it [pod_name] [cmd] => excute command
+docker logs [container id]              <-> kubectl logs [pod_name]
+                                            kubectl delete pod [pod_name]    
+                                            kubectl apply -f [config file name]
+                                            kubectl describe pod [pod_name]
+
+
+    USEFUL ALIAS
+
+Deployments commands
+kubectl get deployments                                            
+kubectl describe deployment [depl name]
+kubectl apply -f [config file name]
+kubectl delete deployment [depl name]
