@@ -13,7 +13,7 @@ docker run 6c5877823b4e
 docker run boris/posts
 - see all images
 docker images
-- Create and start continaer, but also override the default command
+- Create and start contanier, but also override the default command
 docker run -it [image id or image tag] [cmd]
 - Print out information about all the running containers
 docker container ls
@@ -22,7 +22,7 @@ docker exec -it [container id] [cmd]
 - Print out logs from the given container
 docker logs [container id]
 - All currently running containers
-docker ps
+docker container ps
 
 Kubernetis:
 - get version
@@ -31,6 +31,7 @@ kubectl version
 kubectl apply -f posts.yaml
 - inspect pods
 kubectl get pods
+
 
 docker world vs Kubernetis world
 docker ps                               <-> kubectl get pods
@@ -43,8 +44,13 @@ docker logs [container id]              <-> kubectl logs [pod_name]
 
     USEFUL ALIAS
 
-Deployments commands
+Deployments commands:
 kubectl get deployments                                            
-kubectl describe deployment [depl name]
+kubectl describe deployment [deployment name]
 kubectl apply -f [config file name]
-kubectl delete deployment [depl name]
+kubectl delete deployment [deployment name]
+- restart deployment
+kubectl rolout restart deployment [deployment name]
+
+kubectl get services
+kubectl describe services [deployment name]
